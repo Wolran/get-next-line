@@ -2,9 +2,13 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
-# include <unistd.h>
+# include <io.h>
 
-char	*get_next_line(int fd)
-
+char	*get_next_line(int fd);
+char    *ft_strjoin(char *s1, char *s2);
+char    *ft_strrchr(char *str, char y);
+char    *ft_final_str(char *str);
+char    *ft_next_str(char *str);
+int		ft_strlen(char *str);
 
 #endif
