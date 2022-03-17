@@ -3,24 +3,24 @@
 char	*ft_str_replace(char *str)
 {
 	char	*strcpy;
+	int		len;
 	int		i;
-	int		j;
 
+	len = 0;
 	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	strcpy = malloc(i + 1);
+	while (str[len] && str[len] != '\n')
+		len++;
+	if (str[len] == '\n')
+		len++;
+	strcpy = malloc(sizeof(char) * (len + 1));
 	if (!strcpy)
 		return (NULL);
-	j = 0;
-	while (j < i)
+	while (i < len)
 	{
-		strcpy[j] = str[j];
-		j++;
+		strcpy[i] = str[i];
+		i++;
 	}
-	strcpy[j] = 0;
+	strcpy[i] = 0;
 	return (strcpy);
 }
 
@@ -33,20 +33,16 @@ char	*ft_next(char *str)
 
 	i = 0;
 	len = 0;
+	j = ft_strlen(str);
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (str[i] == '\n')
 		i++;
-	j = ft_strlen(str);
-	newstr = malloc(j - i);
+	newstr = malloc(sizeof(char) * (j - i));
 	if (!newstr)
 		return (NULL);
 	while (i < j)
-	{
-		newstr[len] = str[i];
-		i++;
-		len++;
-	}
+		newstr[len++] = str[i++];
 	newstr[len] = 0;
 	free (str);
 	return (newstr);
@@ -69,11 +65,11 @@ char	*get_next_line(int fd)
 		buffer[flag] = 0;
 		str = ft_strjoin(str, buffer);
 	}
-	free (buffer);
 	strcpy = ft_str_replace(str);
 	if (flag == 0)
 		strcpy = 0;
 	str = ft_next(str);
+	free (buffer);
 	return (strcpy);
 }
 
