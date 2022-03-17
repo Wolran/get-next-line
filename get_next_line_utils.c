@@ -42,7 +42,7 @@ char	*ft_strrchr(char *str, char y)
 	size_t	i;
 
 	if (!str)
-		return NULL;
+		return (NULL);
 	i = ft_strlen(str);
 	while (i > 0)
 	{

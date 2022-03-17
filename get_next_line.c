@@ -72,7 +72,6 @@ char	*get_next_line(int fd)
 	free (buffer);
 	return (strcpy);
 }
-
 /*
 # include <stdio.h>
 # include <sys/types.h>
