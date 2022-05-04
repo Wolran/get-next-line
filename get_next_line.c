@@ -59,7 +59,7 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	flag = 1;
-	while (!(ft_strrchr(str, '\n')) && flag != 0)
+	while (!(ft_strchr(str, 10)) && flag != 0)
 	{
 		flag = _read(fd, buffer, BUFFER_SIZE);
 		buffer[flag] = 0;
@@ -72,7 +72,7 @@ char	*get_next_line(int fd)
 	free (buffer);
 	return (strcpy);
 }
-/*
+
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -84,4 +84,3 @@ int	main(void)
 	for (int i = 0; i < 10; i++)
 		printf("%s", get_next_line(fd));
 }
-*/
