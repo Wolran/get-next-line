@@ -8,6 +8,8 @@ char	*ft_str_replace(char *str)
 
 	len = 0;
 	i = 0;
+	if (!str || !str[0])
+		return (NULL);
 	while (str[len] && str[len] != '\n')
 		len++;
 	if (str[len] == '\n')
@@ -61,18 +63,16 @@ char	*get_next_line(int fd)
 	flag = 1;
 	while (!(ft_strchr(str, 10)) && flag != 0)
 	{
-		flag = _read(fd, buffer, BUFFER_SIZE);
+		flag = read(fd, buffer, BUFFER_SIZE);
 		buffer[flag] = 0;
 		str = ft_strjoin(str, buffer);
 	}
 	strcpy = ft_str_replace(str);
-	if (flag == 0)
-		strcpy = 0;
 	str = ft_next(str);
 	free (buffer);
 	return (strcpy);
 }
-
+/*
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -83,4 +83,4 @@ int	main(void)
 	fd = open("fichier", O_RDONLY);
 	for (int i = 0; i < 10; i++)
 		printf("%s", get_next_line(fd));
-}
+}*/
