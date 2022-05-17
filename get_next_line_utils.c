@@ -1,15 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vmuller <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/12 08:24:07 by vmuller           #+#    #+#             */
+/*   Updated: 2022/05/12 08:24:40 by vmuller          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_strlen(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	if (str)
+	{
+		while (str[i])
+			i++;
+		return (i);
+	}
+	return (0);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

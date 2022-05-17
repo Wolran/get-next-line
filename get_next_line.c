@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vmuller <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/12 08:26:05 by vmuller           #+#    #+#             */
+/*   Updated: 2022/05/12 08:26:11 by vmuller          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_str_replace(char *str)
@@ -14,7 +26,7 @@ char	*ft_str_replace(char *str)
 		len++;
 	if (str[len] == '\n')
 		len++;
-	strcpy = malloc(sizeof(char) * (len + 1));
+	strcpy = malloc(sizeof(char) * (len) + 1);
 	if (!strcpy)
 		return (NULL);
 	while (i < len)
@@ -33,6 +45,8 @@ char	*ft_next(char *str)
 	int		j;
 	int		len;
 
+	if (!str)
+		return (NULL);
 	i = 0;
 	len = 0;
 	j = ft_strlen(str);
@@ -40,7 +54,7 @@ char	*ft_next(char *str)
 		i++;
 	if (str[i] == '\n')
 		i++;
-	newstr = malloc(sizeof(char) * (j - i));
+	newstr = malloc(sizeof(char) * (j - i) + 1);
 	if (!newstr)
 		return (NULL);
 	while (i < j)
@@ -52,20 +66,24 @@ char	*ft_next(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str = 0;
+	static char	*str;
 	char		*buffer;
 	char		*strcpy;
 	int			flag;
 
-	buffer = malloc(BUFFER_SIZE + 1);
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	flag = 1;
-	while (!(ft_strchr(str, 10)) && flag != 0)
+	while (!(ft_strchr(str, 10)) && flag)
 	{
 		flag = read(fd, buffer, BUFFER_SIZE);
+		if (flag == -1)
+			return (NULL);
 		buffer[flag] = 0;
 		str = ft_strjoin(str, buffer);
+		if (!str)
+			return (NULL);
 	}
 	strcpy = ft_str_replace(str);
 	str = ft_next(str);
@@ -83,4 +101,5 @@ int	main(void)
 	fd = open("fichier", O_RDONLY);
 	for (int i = 0; i < 10; i++)
 		printf("%s", get_next_line(fd));
-}*/
+}
+*/
