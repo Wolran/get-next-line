@@ -12,61 +12,60 @@
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+char	*ft_strjoin(char *s1, char const *s2)
+{
+	size_t	i;
+	size_t	len1;
+	char	*str;
+
+	if (s1 && s2)
+	{
+		len1 = ft_strlen(s1);
+		str = (char *)malloc(sizeof(char) * (len1 + ft_strlen(s2) + 1));
+		if (str == NULL)
+			return (NULL);
+		i = -1;
+		while (s1[++i])
+			str[i] = s1[i];
+		i = -1;
+		while (s2[++i])
+		{
+			str[len1] = s2[i];
+			len1++;
+		}
+		str[len1] = '\0';
+		free(s1);
+		return (str);
+	}
+	return (NULL);
+}
+
+void	*ft_calloc(size_t elcount, size_t elsize)
+{
+	char			*ptr;
+	unsigned int	total;
+	unsigned int	i;
+
+	total = elcount * elsize;
+	ptr = malloc(total);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (total > 0)
+	{
+		ptr[i] = 0;
+		i++;
+		total--;
+	}
+	return ((void *)ptr);
+}
+
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
 	i = 0;
-	if (!str)
-		return (0);
-	if (str)
-	{
-		while (str[i])
-			i++;
-		return (i);
-	}
-	return (0);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	j = 0;
-	str = malloc(((ft_strlen(s1)) + (ft_strlen(s2)) + 1));
-	if (!str)
-		return (NULL);
-	if (s1)
-	{
-		while (s1[i])
-		{
-			str[i] = s1[i];
-			i++;
-		}
-	}
-	while (s2[j])
-		str[i++] = s2[j++];
-	str[i] = 0;
-	return (str);
-}
-
-char	*ft_strchr(char *str, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
 	while (str[i])
-	{
-		if (str[i] == (char)c)
-			return ((char *)(str + i));
 		i++;
-	}
-	if (str[i] == c)
-		return ((char *)(str + i));
-	return (NULL);
+	return (i);
 }
