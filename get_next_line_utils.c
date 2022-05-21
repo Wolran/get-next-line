@@ -12,6 +12,16 @@
 
 #include "get_next_line.h"
 
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 char	*ft_strjoin(char *s1, char const *s2)
 {
 	size_t	i;
@@ -60,12 +70,3 @@ void	*ft_calloc(size_t elcount, size_t elsize)
 	return ((void *)ptr);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
