@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmuller <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
@@ -35,7 +35,7 @@ char	*get_next_line(int fd)
 	free(buffer);
 	return (str);
 }
-
+/*
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -49,4 +49,4 @@ int	main(void)
 	for (int i = 0; i < 10; i++)
 		printf("%s", get_next_line(fd));
 }
-
+*/
