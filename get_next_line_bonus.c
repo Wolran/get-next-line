@@ -14,21 +14,23 @@
 
 char	*get_next_line(int fd)
 {
-	char	*buffer;
-	char	*str;
-	int		flag;
+	char		*buffer;
+	char		*str;
+	int			flag;
+	static int	size;
 
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_calloc(((BUFFER_SIZE / BUFFER_SIZE) + 1), sizeof(char));
+	size = BUFFER_SIZE / BUFFER_SIZE;
+	buffer = ft_calloc((size + 1), sizeof(char));
 	str = NULL;
-	flag = read(fd, buffer, (BUFFER_SIZE / BUFFER_SIZE));
+	flag = read(fd, buffer, size);
 	if (flag > 0)
-		str = ft_calloc(((BUFFER_SIZE / BUFFER_SIZE) + 1), sizeof(char));
+		str = ft_calloc((size + 1), sizeof(char));
 	while (flag > 0 && buffer[0] != '\n')
 	{
 		str = ft_strjoin(str, buffer);
-		flag = read(fd, buffer, (BUFFER_SIZE / BUFFER_SIZE));
+		flag = read(fd, buffer, size);
 	}
 	if (buffer[0] == '\n')
 		str = ft_strjoin(str, "\n");
