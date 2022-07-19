@@ -38,6 +38,7 @@ char	*get_next_line(int fd)
 	return (str);
 }
 
+/*
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -51,4 +52,4 @@ int	main(void)
 	for (int i = 0; i < 10; i++)
 		printf("%s", get_next_line(fd));
 }
-
+*/
